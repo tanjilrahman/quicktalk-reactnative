@@ -1,21 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from "react";
+import { WebView } from "react-native-webview";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+export default class App extends React.Component {
+  render() {
+    return (
+      <WebView
+        source={{ uri: "https://quicktalk.vercel.app/" }}
+        style={{ marginTop: 35 }}
+        userAgent={
+          Platform.OS === "android"
+            ? "Chrome/18.0.1025.133 Mobile Safari/535.19"
+            : "AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75"
+        }
+        originWhitelist={["https://*", "http://*", "file://*", "sms://*"]}
+      />
+    );
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
